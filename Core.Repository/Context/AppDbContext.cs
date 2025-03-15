@@ -6,5 +6,6 @@ namespace Core.Repository.Context
     public class AppDbContext(DbContextOptions options) : DbContext(options)
     {
         public DbSet<League> Leagues { get; set; }
+        public DbSet<Team> Teams { get; set; }
     }
 }
