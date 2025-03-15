@@ -1,8 +1,7 @@
 ﻿namespace Core.Repository.Entities
 {
-    public class Match
+    public class Match : BaseEntity
     {
-        public int Id { get; set; }
         public int HomeTeamId { get; set; }
         public virtual Team HomeTeam { get; set; }
         public int AwayTeamId { get; set; }
