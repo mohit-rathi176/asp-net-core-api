@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>((options) =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString"), b => b.MigrationsAssembly("Core.Repository"));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    options.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
 });
 #endregion
 
