@@ -14,41 +14,8 @@ namespace Core.Repository.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<League>()
-                .HasMany(l => l.Teams)
-                .WithOne(t => t.League)
-                .HasForeignKey(t => t.LeagueId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<League>()
-                .Property(l => l.Name)
-                .HasMaxLength(255)
-                .IsRequired();
-
-            modelBuilder.Entity<Team>()
-                .Property(t => t.Name)
-                .HasMaxLength(255)
-                .IsRequired();
-
-            modelBuilder.Entity<Team>()
-                .HasMany(t => t.HomeMatches)
-                .WithOne(m => m.HomeTeam)
-                .HasForeignKey(m => m.HomeTeamId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Team>()
-                .HasMany(t => t.AwayMatches)
-                .WithOne(m => m.AwayTeam)
-                .HasForeignKey(m => m.AwayTeamId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Coach>()
-                .Property(c => c.Name)
-                .HasMaxLength(255)
-                .IsRequired();
+            // Automatically apply all IEntityTypeConfiguration<T> classes
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
 }
