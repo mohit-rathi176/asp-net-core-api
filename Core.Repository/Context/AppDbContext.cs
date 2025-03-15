@@ -44,6 +44,11 @@ namespace Core.Repository.Context
                 .HasForeignKey(m => m.AwayTeamId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Coach>()
+                .Property(c => c.Name)
+                .HasMaxLength(255)
+                .IsRequired();
         }
     }
 }
